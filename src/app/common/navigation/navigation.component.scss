@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "bignoodle";
+  src: url("../../../assets/fonts/bignoodletitlingoblique.ttf");
+}
+
+.navbar {
+  background: linear-gradient(#19193f, #0f325b);
+  font-family: "bignoodle";
+  padding: 0;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-size: 3rem;
+}
+
+.nav-link {
+  color: #fff;
+  font-size: 2rem;
+  margin-left: 50px;
+}

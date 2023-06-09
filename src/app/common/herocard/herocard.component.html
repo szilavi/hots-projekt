@@ -1,0 +1,46 @@
+<!-- <div class="d-flex justify-content-center m-3">
+  <div class="card px-0 col-sm-12-md6-lg-2" style="width: 22rem">
+    <img
+      style="height: 340px"
+      [src]="hero.image"
+      class="card-img-top"
+      alt="Card image cap"
+    />
+    <div class="card-body d-flex flex-direction-column">
+      <h5 class="card-title">{{ hero.name }}</h5>
+      <p class="card-text">
+        current level: {{ hero.level }}
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad magni
+        accusamus, dolorem officiis praesentium mollitia nobis architecto.
+      </p>
+      <a *ngIf="!hero.owned" href="#" class="btn btn-primary">Unlock Hero!</a>
+    </div>
+  </div>
+</div> -->
+<div class="card mb-2 m-2" style="width: 10rem">
+  <img [src]="hero.image" class="card-img-top" alt="..." />
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-titlete text-center hotstext">{{ hero.name }}</h5>
+    <p class="card-text text-center hotstext heroleveltext">
+      Current level: {{ hero.level }}
+    </p>
+    <p *ngIf="hero.owned" class="card-text text-center hotstext owned">Owned</p>
+    <p *ngIf="!hero.owned" class="card-text text-center hotstext notowned">
+      Not owned
+    </p>
+    <div class="btn-group" role="group">
+      <button
+        [routerLink]="['/heroeditor/', hero.id]"
+        class="btn btn-primary btn-sm hotstext editbtn"
+      >
+        Edit
+      </button>
+      <button
+        (click)="removeHero(hero)"
+        class="btn btn-danger btn-sm hotstext deletebtn"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "bignoodle";
+  src: url("../../../assets/fonts/bignoodletitlingoblique.ttf");
+}
+
+.hotstext {
+  font-family: "bignoodle";
+}
+
+.card {
+  display: inline-block;
+  background: rgba(21, 36, 86, 0.9);
+  color: #fff;
+  user-select: none;
+  &:hover {
+    position: relative;
+    top: -5px;
+    left: -2px;
+    box-shadow: 0 0 20px 3px #0f325b;
+  }
+}
+
+.notowned {
+  color: red;
+  font-size: 1.2rem;
+}
+
+.owned {
+  color: green;
+  font-size: 1.2rem;
+}
+
+.heroleveltext {
+  font-size: 1.5rem;
+}
+
+.card-titlete {
+  font-size: 2rem;
+}
+
+.deletebtn,
+.editbtn {
+  font-size: 1.2rem;
+}

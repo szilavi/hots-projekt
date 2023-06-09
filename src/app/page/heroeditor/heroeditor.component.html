@@ -1,0 +1,109 @@
+<div class="mt-4 p-5 text-white rounded mt-3 jumbotron">
+  <h1 class="hotstitle">Hero Editor</h1>
+  <div class="my-1">
+    <img class="rounded mx-auto" [src]="hero.icon" alt="heroicon" />
+  </div>
+  <form
+    (ngSubmit)="onSubmit(hero)"
+    #heroForm="ngForm"
+    *ngIf="hero$"
+    class="row g-3"
+  >
+    <div class="col-lg-1">
+      <label for="heroid" class="form-label formtext">Id</label>
+      <input
+        disabled
+        [(ngModel)]="hero.id"
+        #heroId="ngModel"
+        name="id"
+        type="text"
+        class="form-control formtext"
+        id="heroid"
+      />
+    </div>
+    <div class="col-lg-6">
+      <label for="heroname" class="form-label formtext">Hero Name</label>
+      <input
+        [disabled]="checked"
+        [(ngModel)]="hero.name"
+        #heroName="ngModel"
+        name="name"
+        type="text"
+        class="form-control formtext"
+        id="heroname"
+        pattern=".{1,11}"
+        required
+      />
+      <div
+        [hidden]="heroName.valid || heroName.pristine || heroName.disabled"
+        class="errormessage"
+      >
+        Add hero name! (min 1, max 11 character)
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <label for="herolevel" class="form-label formtext">Current level</label>
+      <input
+        [(ngModel)]="hero.level"
+        [disabled]="checked"
+        #heroLevel="ngModel"
+        name="level"
+        type="text"
+        class="form-control formtext"
+        id="herolevel"
+        pattern="[0-9]{1,2}"
+        required
+      />
+      <div
+        [hidden]="heroLevel.valid || heroLevel.pristine || heroLevel.disabled"
+        class="errormessage"
+      >
+        Add level! (max. lvl 99)
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <label for="inputState" class="form-label formtext"
+        >Is this hero in your library?</label
+      >
+      <select
+        [(ngModel)]="hero.owned"
+        [disabled]="checked"
+        #heroOwned="ngModel"
+        name="owned"
+        id="inputState"
+        class="form-select formtext"
+        required
+      >
+        <option
+          *ngFor="let status of statusList"
+          [value]="status.key"
+          class="formtext"
+        >
+          {{ status.title }}
+        </option>
+      </select>
+    </div>
+    <div class="form-check formtext">
+      <input
+        (change)="onChecked()"
+        class="form-check-input"
+        type="checkbox"
+        value="owned"
+        id="heroowned"
+        [checked]="checked"
+      />
+      <label class="form-check-label formtext checkboxlabel" for="heroowned">
+        I want to save changes!
+      </label>
+    </div>
+    <div class="col-12">
+      <button
+        [disabled]="heroForm.form.invalid || checked === false"
+        type="submit"
+        class="btn btn-primary"
+      >
+        {{ hero.id === 0 ? "Create new Hero" : "Save changes" }}
+      </button>
+    </div>
+  </form>
+</div>

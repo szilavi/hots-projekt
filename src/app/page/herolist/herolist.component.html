@@ -1,0 +1,80 @@
+<!-- Searcher -->
+<div class="mt-4 p-5 text-white rounded my-3 jumbotron">
+  <form class="row g-3">
+    <div class="col-md-2 d-flex justify-content-center align-items-center my-5">
+      <select
+        id="select"
+        name="filter"
+        [(ngModel)]="filterKey"
+        class="form-select bg-dark text-white formtext"
+      >
+        <option class="formtext" value="">Select!</option>
+        <option
+          class="formtext"
+          *ngFor="let options of heroFilterKeys"
+          [value]="options.key"
+        >
+          {{ options.title }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label *ngIf="!filterKey" for="heroname" class="form-label labeltext"
+        >You must select a filter!</label
+      >
+      <label *ngIf="filterKey" for="heroname" class="form-label labeltext"
+        >Type to search...</label
+      >
+      <input
+        [disabled]="!filterKey"
+        name="heroname"
+        [(ngModel)]="phrase"
+        type="text"
+        class="form-control bg-dark formtext text-white formtext"
+        id="heroname"
+      />
+    </div>
+  </form>
+</div>
+
+<!-- New Hero Button -->
+<div>
+  <button [routerLink]="['/heroeditor/']" class="btn btn-primary btn-lg">
+    Add new hero
+  </button>
+</div>
+
+<!-- Paginator -->
+<div class="col-12">
+  <div *ngIf="!filterKey" class="row">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item paginatortext" (click)="prevPage()">
+          <a class="page-link paginatorbg text-white" tabindex="-1">Previous</a>
+        </li>
+        <li
+          *ngFor="let page of allPage"
+          (click)="onPage(page)"
+          class="page-item paginatortext"
+        >
+          <a class="page-link paginatorbg text-white">{{ page }}</a>
+        </li>
+        <li class="page-item paginatortext" (click)="nextPage()">
+          <a class="page-link paginatorbg text-white">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Hero List -->
+  <div *ngIf="!filterKey">
+    <app-herocard *ngFor="let hero of heroList" [hero]="hero"></app-herocard>
+  </div>
+
+  <div *ngIf="filterKey">
+    <app-herocard
+      *ngFor="let hero of allHero$ | async | filter : filterKey : phrase"
+      [hero]="hero"
+    ></app-herocard>
+  </div>
+</div>
